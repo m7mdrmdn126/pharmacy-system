@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="list.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@500&display=swap" rel="stylesheet">
+    <title> Home </title>
+</head>
+<body>
+    
+    <!-- main styling  and lighting -->
+    <img src="light_up.png" class = "light">
+
+
+    <!-- Navbar -->
+    <div class="navbar"> 
+        <img class="logo" src="logo.png">
+        <ul class="nav">
+            <li class="nav_item"> <a href="/"> Home </a></li>
+            <li class="nav_item"> <a href="/staff"> Staff </a></li>
+            <li class="nav_item"> <a href="/patients"> Patients </a></li>
+            <li class="nav_item"> <a href="/products"> Products </a></li>
+            <li class="nav_item"> <a href="/records"> Records </a></li>
+            <li class="nav_item"> <a href="/expires"> Home </a></li>
+            <li class="nav_item"> <a href="/logout"> Logout </a> </li>
+        </ul>
+    </div>
+
+
+
+
+    <div class="main"> 
+        <ul class="hedar">
+            <li class="columns">Product ID</li>
+            <li class="columns"> Name </li>
+            <li class="columns"> Type </li>
+            <li class="columns"> Price </li>
+            <li class="columns"> Quantity </li>
+            <li class="columns"> Expiry Date </li>
+            <li class="columns"> MANUFACTURER_ID </li>
+            <li class="columns"> Staff ID </li>
+    </div>
+
+    <% data.forEach((d) => { %>
+        <ul class="sub_col"> 
+            <% d.forEach((da) => { %>
+                <li class="columns"> <%= da %> </li>
+            <% }); %>
+            <li class="columns"> <a href="/products/edit/ <%= da[0] %> "> Edit </a></li>
+            <li class="columns"> <a href="/products/delete/ <%= da[0] %> "> Delete </a></li>
+        </ul>
+        <% }); %>
+
+
+
+
+
+  
+
+
+
+
+
+
+
+</body>
+</html>

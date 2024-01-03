@@ -1,0 +1,46 @@
+.main{
+    position: absolute;
+    width: 90%;
+    height: 70%;
+    top: 25%;
+    left: 10%;
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.hedar{
+    background-color: #7962ff ;
+    width: 80%;
+    color: white;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1.4em;
+    padding: 20px;
+    padding-right: 20px;
+    border-radius: 20px;
+}
+
+.columns{
+    list-style: none;
+}
+
+.sub_col{
+    width: 80%;
+    color:#030612;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1.4em;
+    padding: 20px;
+    padding-right: 20px;
+    border-radius: 20px;
+}
+
+.sub_data{
+    width: 100%;
+    position: absolute;
+    top: 10%;
+}

@@ -1,0 +1,32 @@
+.form{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    background-color: #D2D8F1;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    top: 20%;
+    left: 37.5%;
+}
+
+.inp1 {
+    border: none;
+    margin-top: 2em;
+    background: none;
+    outline: none;
+    width: 80%;
+    height: 30px;
+    border-bottom: #090F25 2px solid;
+    color: #0C1537;
+    font-weight: 600;
+}
+
+.inp::placeholder{
+    color: #0C1537;
+    opacity: 75%;
+    font-size: 1.5em;
+    font-weight: 600;
+}
