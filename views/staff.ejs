@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
     <link rel="icon" href="logo.png">
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="list.css">
@@ -52,6 +53,8 @@
                         <li class="columns"> <%= da %> </li>
                     <% }); %>
                 </ul>
+                <li class="delete"> <a href="/staff/delete/<%= d[0] %>"> X </a></li>
+                <li class="edit"> <a href="/staff/edit/<%= d[0] %>"> Edit </a></li>
                 <% }); %>
         </div>
        

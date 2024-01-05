@@ -11,15 +11,54 @@ const products = require('../controllers/products')
 const records = require('../controllers/records')
 const it = require('../controllers/it')
 const problem = require('../controllers/add_problem')
+const del_staff = require('../controllers/delete_staff')
+const {get_staff, update_staff} = require('../controllers/edit_staff')
 const {record , update_amount , get_price, get_name} = require('../controllers/add_record')
 const router = express.Router()
 
 router.route('/staff').get( async (req ,res) => {
     const data = await staff.get() ;
+    console.log(data)
     res.render('staff' , {
         data : data
     })
 })
+
+
+router.route('/staff/delete/:id').get(
+    async (req, res) => {
+        const staff_id = req.params.id
+        const response = await del_staff(staff_id)
+        console.log(response)
+        res.redirect('/staff')
+    }
+)
+
+
+router.route('/staff/edit/:gg').get(
+    async (req , res) => {
+        const staff_id = req.params.gg
+        const data = await get_staff(staff_id)
+        console.log(" ----------  edit -------------")
+        console.log(staff_id)
+
+        let columns = ["staff_id" , "f_name" , "l_name" , "salary"]
+        let dt = createObject(columns , data[0])
+        res.render('edit' , {
+            id : staff_id , 
+            data : dt
+        })
+
+    }
+).post(
+    async(req ,res) => {
+        const {staff_id , f_name , l_name , salary} = req.body
+        const response = await update_staff(staff_id , f_name , l_name ,salary)
+        console.log(response)
+        res.redirect('/staff')
+    }
+)
+
 
 
 
@@ -47,7 +86,7 @@ router.route('/expires').get( async (req ,res) => {
 
 router.route('/it').get( async (req ,res) => {
     const data = await it() ;
-    res.render('staff' , {
+    res.render('it_problems' , {
         data : data
     })
 })
@@ -157,7 +196,7 @@ router.route('/add_to_cart').post(
         const product_name = await get_name(product)
         const am = await update_amount(product)
         cart[product_name] = price[0][0]
-        const response = await record(generateUniqueRandomNumber(140, 150),price,staff, patient,product )
+        const response = await record(generateUniqueRandomNumber(160, 170),price,staff, patient,product )
         console.log('from the record' ,response)
         console.log(cart)
         res.redirect('/')
@@ -185,6 +224,21 @@ router.route('/buy').get(
 
 
 
+function createObject(keys, values) {
+    // Check if both arrays are of the same length
+    if (keys.length !== values.length) {
+      throw new Error('Arrays must be of the same length');
+    }
+  
+    // Use reduce to build the object
+    const resultObject = keys.reduce((obj, key, index) => {
+      obj[key] = values[index];
+      return obj;
+    }, {});
+  
+    return resultObject;
+  }
+  
 
 
 
@@ -198,3 +252,8 @@ router.route('/buy').get(
 
 
 module.exports = router
+
+
+/* medical : products , patients , needs , expires */
+// it => problems 
+// manager => show all , manage staff

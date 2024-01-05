@@ -44,3 +44,41 @@
     position: absolute;
     top: 10%;
 }
+
+.delete{
+    list-style: none;
+    position: absolute;
+    right: 15%;
+    font-size: 1.5em;
+    margin-top: -50px;
+
+}
+
+.delete a:hover{
+    color: red;
+}
+
+.edit{
+    list-style: none;
+    position: absolute;
+    right: 10%;
+    font-size: 1.5em;
+    margin-top: -50px;
+}
+
+.edit a:hover{
+    color: rgb(7, 171, 7);
+}
+
+
+.container{
+    position: absolute;
+    width: 30%;
+    height: 80%;
+    left: 35%;
+    top: 30%;
+}
+
+.it{
+    margin-top: -80px;
+}

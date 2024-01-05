@@ -20,8 +20,14 @@ function requireLogin(req, res, next) {
 
 
 
-router.route('/').get( requireLogin , (req , res) => { 
-    res.render('Home')
+router.route('/').get( requireLogin , (req , res) => {
+    if(req.session.role == 'IT'){
+        res.redirect('/it')
+    }
+    else if(req.session.role == 'Medical'){
+        res.render('Home')
+    }
+    res.render('Manager')
 })
 
 
@@ -38,6 +44,8 @@ router.route('/login').get( (req , res) => {
         let user = await get_user_by_id(user_id)
         if (user[0][4] == password){
             req.session.userId = user_id;
+            req.session.role = user[0][5]
+            console.log(user[0][5])
             res.redirect('/');
         } else {
             res.send('Invalid username or password.');
