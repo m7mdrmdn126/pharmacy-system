@@ -14,6 +14,8 @@ const problem = require('../controllers/add_problem')
 const del_staff = require('../controllers/delete_staff')
 const {get_staff, update_staff} = require('../controllers/edit_staff')
 const {record , update_amount , get_price, get_name} = require('../controllers/add_record')
+const {get_it, update_it, del_it} = require('../controllers/it_manage')
+const add_staff = require('../controllers/add_staff')
 const router = express.Router()
 
 router.route('/staff').get( async (req ,res) => {
@@ -39,7 +41,7 @@ router.route('/staff/edit/:gg').get(
     async (req , res) => {
         const staff_id = req.params.gg
         const data = await get_staff(staff_id)
-        console.log(" ----------  edit -------------")
+        console.log(" ---------- edit -------------")
         console.log(staff_id)
 
         let columns = ["staff_id" , "f_name" , "l_name" , "salary"]
@@ -59,30 +61,23 @@ router.route('/staff/edit/:gg').get(
     }
 )
 
-
-
-
-router.route('/devices').get( async (req ,res) => {
-    const data = await devices.get() ;
-    res.render('staff' , {
-        data : data 
-    })
-})
-
-
-
-
-router.route('/expires').get( async (req ,res) => {
-    const data = await expires() ;
-    res.render('staff' , {
-        data : data
-    })
-})
+router.route('/add_staff').get(
+    (req , res) => {
+        res.render('add_staff')
+    }
+).post(
+    async (req , res) =>{
+        const {id , fname , lname , username , password , department , salary , age , shift , phone} = req.body
+        const response = await add_staff(id , fname , lname , username , password , department , salary , age , shift , phone)
+        console.log(response)
+        res.redirect('/staff')
+    }
+)
 
 
 
 
-
+// it routes 
 
 router.route('/it').get( async (req ,res) => {
     const data = await it() ;
@@ -92,9 +87,59 @@ router.route('/it').get( async (req ,res) => {
 })
 
 
+router.route('/it/delete/:id').get(
+    async (req, res) => {
+        const id = req.params.id
+        const response = await del_it(id)
+        console.log(response)
+        res.redirect('/it')
+    }
+)
+
+
+router.route('/it/edit/:gg').get(
+    async (req , res) => {
+        const it_id = req.params.gg
+        const data = await get_it(it_id)
+        console.log(" ----------  edit -------------")
+        console.log(it_id)
+
+        let columns = ["it_id" , "done"]
+        let dt = createObject(columns , data[0])
+        res.render('edit_it' , {
+            id : it_id , 
+            data : dt
+        })
+
+    }
+).post(
+    async(req ,res) => {
+        const {it_id , done} = req.body
+        console.log("debugggg.........................")
+        console.log(it_id ,done)
+        const response = await update_it(it_id ,  done)
+        console.log(response)
+        res.redirect('/it')
+    }
+)
 
 
 
+
+
+
+
+
+
+
+
+
+router.route('/devices').get( async (req ,res) => {
+    const data = await devices.get() ;
+    res.render('staff' , {
+        data : data 
+    })
+})
 
 router.route('/manifacture').get( async (req ,res) => {
     const data = await manifa() ;
@@ -107,9 +152,26 @@ router.route('/manifacture').get( async (req ,res) => {
 
 
 
+
+
+router.route('/expires').get( async (req ,res) => {
+    const data = await expires() ;
+    res.render('expires' , {
+        data : data
+    })
+})
+
+
+
+
+
+
+
+
+
 router.route('/needs').get( async (req ,res) => {
     const data = await needs() ;
-    res.render('staff' , {
+    res.render('needs' , {
         data : data
     })
 })
@@ -141,6 +203,16 @@ router.route('/products').get( async (req ,res) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
 router.route('/records').get( async (req ,res) => {
     const data = await records() ;
     res.render('staff' , {
@@ -159,6 +231,9 @@ router.route('/report').get((req , res) => {
     console.log(response);
     res.redirect('/')
 })
+
+
+
 
 
 
@@ -255,5 +330,5 @@ module.exports = router
 
 
 /* medical : products , patients , needs , expires */
-// it => problems 
-// manager => show all , manage staff
+// it => problems  Done 
+// manager => show all , manage staff  Done

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
     <link rel="icon" href="logo.png">
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="list.css">
@@ -21,37 +22,29 @@
     <div class="navbar"> 
         <img class="logo" src="logo.png">
         <ul class="nav">
-            <li class="nav_item"> <a href="/"> Home </a></li>
             <li class="nav_item"> <a href="/logout"> Logout </a> </li>
         </ul>
     </div>
 
 
+    <div class="container">
+        <form action="/it/edit/<%= id %>" method="post">
 
+            <% for (const key in data) { %>
+                <input type="text" value="<%= data[key] %>" class="inp" name="<%= key %>">
+              <% } %>
 
-    <div class="main"> 
-        <ul class="hedar">
-            <li class="columns">Expiry ID</li>
-            <li class="columns">Name</li>
-            <li class="columns"> Type </li>
-            <li class="columns"> Price </li>
-            <li class="columns"> Quantity </li>
-            <li class="columns"> Manifacture ID</li>
-            <li class="columns"> Product ID </li>
-        </ul>
+                <input type="submit" value="update" class="btn">
+        </form>
     </div>
+    
+
+   
 
 
-
-    <div class="sub_data down">
-        <% data.forEach((d) => { %>
-            <ul class="sub_col"> 
-                <% d.forEach((da) => { %>
-                    <li class="columns"> <%= da %> </li>
-                <% }); %>
-            </ul>
-            <% }); %>
-    </div>
+    <form action="/report">
+        <input type="submit" value="!" class="report">   
+    </form>
 
 
   

@@ -23,11 +23,6 @@
         <img class="logo" src="logo.png">
         <ul class="nav">
             <li class="nav_item"> <a href="/"> Home </a></li>
-            <li class="nav_item"> <a href="/staff"> Staff </a></li>
-            <li class="nav_item"> <a href="/patients"> Patients </a></li>
-            <li class="nav_item"> <a href="/products"> Products </a></li>
-            <li class="nav_item"> <a href="/records"> Records </a></li>
-            <li class="nav_item"> <a href="/expires"> Home </a></li>
             <li class="nav_item"> <a href="/logout"> Logout </a> </li>
         </ul>
     </div>
@@ -57,12 +52,12 @@
                 <li class="edit"> <a href="/staff/edit/<%= d[0] %>"> Edit </a></li>
                 <% }); %>
         </div>
-       
+        
         
     </div>
 
 
-   
+   <a href="/add_staff" class="btn add"> ADD STAFF </a>
 
 
     <form action="/report">

@@ -22,11 +22,6 @@
         <img class="logo" src="logo.png">
         <ul class="nav">
             <li class="nav_item"> <a href="/"> Home </a></li>
-            <li class="nav_item"> <a href="/staff"> Staff </a></li>
-            <li class="nav_item"> <a href="/patients"> Patients </a></li>
-            <li class="nav_item"> <a href="/products"> Products </a></li>
-            <li class="nav_item"> <a href="/records"> Records </a></li>
-            <li class="nav_item"> <a href="/expires"> Home </a></li>
             <li class="nav_item"> <a href="/logout"> Logout </a> </li>
         </ul>
     </div>
@@ -47,16 +42,16 @@
         </ul>
     </div>
 
-
-    <% data.forEach((d) => { %>
-        <ul class="sub_col"> 
-            <% d.forEach((da) => { %>
-                <li class="columns"> <%= da %> </li>
+    <div class="sub_data">
+        <% data.forEach((d) => { %>
+            <ul class="sub_col"> 
+                <% d.forEach((da) => { %>
+                    <li class="columns"> <%= da %> </li>
+                <% }); %>
+            </ul>
             <% }); %>
-            <li class="columns"> <a href="/expires/edit/ <%= da[0] %> "> Edit </a></li>
-            <li class="columns"> <a href="/expires/delete/ <%= da[0] %> "> Delete </a></li>
-        </ul>
-        <% }); %>
+    </div>
+    
 
 
 

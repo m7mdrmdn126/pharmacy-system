@@ -27,15 +27,20 @@
     </div>
 
 
-    <div class="container">
-        <form action="/staff/edit/<%= id %>" method="post">
-
-            <% for (const key in data) { %>
-                <input type="text" value="<%= data[key] %>" class="inp" name="<%= key %>">
-              <% } %>
-
-                <input type="submit" value="update" class="btn">
-        </form>
+    <div class="container staff_add">
+        <form action="/add_staff" method="post">
+                <input type="text"  class="inp" name="id" placeholder="id">
+                <input type="text"  class="inp" name="fname" placeholder="first name">
+                <input type="text"  class="inp" name="lname" placeholder="last name">
+                <input type="text"  class="inp" name="username" placeholder="username">
+                <input type="text"  class="inp" name="password" placeholder="password">
+                <input type="text"  class="inp" name="department" placeholder="department">
+                <input type="text"  class="inp" name="salary" placeholder="salary">
+                <input type="text"  class="inp" name="age" placeholder="age">
+                <input type="text"  class="inp" name="shift" placeholder="shift">
+                <input type="text"  class="inp" name="phone" placeholder="phone number">
+                <input type="submit" value="add" class="btn">
+        </form> 
     </div>
     
 
